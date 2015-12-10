@@ -53,50 +53,27 @@ OAR3_1.OA_Roslin001.liver.H3K27ac.ERX053278.FAANGUK_chipv3.peaks.20150617.bb
 
 So this hypothetical example represents a liver H3K27ac ChIP-Seq experiment for the Roslin's first Sheep sample using the FAANG v3 peak calling pipeline on the Sheep Assembly OAR_v3.1
 
-FAANG analysis metadata spec
+##Information needed for the analysis
 
-Raw data produced by each experiment will be analysed, producing results. E.g. 
-ChIP-seq experiment will generate reads.
-Reads will are aligned to the genome.
-Normalized signal plots and QC metrics will be produced from the alignments. 
-ChIP & input/IgG alignments be used for peak calling. 
+The analysis pipelines need some information to process the data. Some of this information is generally required for all sequencing-based pipelines while some is pipeline-specific. 
 
-Steps 2-4 produce analysis results. For each of these analysis results we should record which data, reference data and protocol were used to produce them. 
+###Information about the input data
 
-Metadata
+* Species/breed/animal/tissue or cell line.
+* Experimental design: experimental factors, groups, replicates, etc.
 
-Input data
+###Information about the experimental protocol
 
-A list of files used at input and experiment IDs.
+Specific details are required, in particular for the different pipelines:
 
-Reference data - e.g. genome assembly, gene set, etc
+1. RNA-seq: extraction/purification (polyA+ or ribominus?), size selection (small RNAs?).
+2. ATAC-seq: name and ref of the transposase + adapter sequences.
+3. Hi-C: Restriction Enzyme name + restriction site.
 
-Analysis protocol - precise description of the analysis protocol, including the following information:
+###Information about the sequencing part
 
-URLs and versions for all software used (including in-house scripts)
-Full command line used to run the analysis
-Link to any VM or containers used, if applicable
-
-The analysis must be entirely reproducible based on the protocol document. 
-
-QC attributes produced by the analysis. These will vary based on the experiment type, but for sequencing work should always include mapping statistics as a bare minimum.
-File naming
-
-Each file should be uniquely identifiable with a human readable name, giving sufficient information to understand what it contains. We expect analysis to be repeated at intervals, as reference data and protocols are updated, so a data freeze data is included.
-
-Short names based on the following, separated with a dot (‘.’):
-
-species / assembly version
-sample name
-sample description (tissue or cell type)
-assay type
-experiment target
-experiment ID
-analysis protocol name
-results type (e.g. genotypes vs. sites for 1000genomes vcf files)
-data freeze date
-file format
-
-The metadata group will seek guidance from the analysis group about what protocol information and QC statistics need to be recorded.
-
-
+* Size selection of the library (fragment size distribution)
+* Sequencer
+* PE or SE?
+* Read length
+* Number of reads
